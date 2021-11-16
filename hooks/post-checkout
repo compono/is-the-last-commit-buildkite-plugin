@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+git fetch origin
+LAST_COMMIT_SHA=$(git log -n 1 --pretty=format:"%H" $BUILDKITE_BRANCH)
+
+if [[ "$LAST_COMMIT_SHA" != "$BUILDKITE_COMMIT" ]]; then
+  echo "The ${BUILDKITE_COMMIT} is not the last commit of ${BUILDKITE_BRANCH}"
+  exit 1
+fi
