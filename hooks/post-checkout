@@ -2,12 +2,12 @@
 set -euo pipefail
 
 git fetch origin
-LAST_COMMIT_SHA=$(git log -n 1 --pretty=format:"%H" $BUILDKITE_BRANCH)
+LAST_COMMIT_SHA=$(git log -n 1 --pretty=format:"%H" HEAD^..HEAD)
 
 if [[ "$BUILDKITE_COMMIT" == "HEAD" ]]; then
   exit 0
 fi
 if [[ "$LAST_COMMIT_SHA" != "$BUILDKITE_COMMIT" ]]; then
-  echo "The ${BUILDKITE_COMMIT} is not the last commit of ${BUILDKITE_BRANCH}"
+  echo "The ${BUILDKITE_COMMIT} is not the last commit"
   exit 1
 fi
