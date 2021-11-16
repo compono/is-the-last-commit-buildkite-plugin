@@ -1,0 +1,7 @@
+name: Is the last commit
+description: Is BUILDKITE_COMMIT the latest in BUILDKITE_BRANCH?
+author: https://github.com/runlevel5
+requirements:
+  - git
+configuration:
+  additionalProperties: false
